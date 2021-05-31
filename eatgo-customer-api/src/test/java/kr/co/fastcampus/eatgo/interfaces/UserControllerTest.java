@@ -1,7 +1,6 @@
 package kr.co.fastcampus.eatgo.interfaces;
 
-import kr.co.fastcampus.eatgo.application.ReviewService;
-import kr.co.fastcampus.eatgo.domain.Review;
+import kr.co.fastcampus.eatgo.application.UserService;
 import kr.co.fastcampus.eatgo.domain.User;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -15,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
