@@ -67,7 +67,7 @@ class RestaurantServiceTest {
 
     @Test
     public void getRestaurantWithNotExisted() {
-        assertThrows(RuntimeException.class, () -> {
+        assertThrows(RestaurantNotFoundException.class, () -> {
             Restaurant restaurant = restaurantService.getRestaurant(404L);
         });
     }
