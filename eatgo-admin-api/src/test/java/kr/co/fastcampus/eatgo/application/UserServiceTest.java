@@ -1,9 +1,5 @@
 package kr.co.fastcampus.eatgo.application;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import kr.co.fastcampus.eatgo.domain.User;
 import kr.co.fastcampus.eatgo.domain.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,13 +7,16 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 
 public class UserServiceTest {
 
@@ -78,5 +77,26 @@ public class UserServiceTest {
 
         assertThat(user.getName(), is("Superman"));
         assertThat(user.isAdmin(), is(true));
+    }
+
+    @Test
+    public void deactiveUser(){
+        Long id = 1004L;
+
+        User mockUser = User.builder()
+                .id(id)
+                .email("admin@example.com")
+                .name("Administrator")
+                .level(100L)
+                .build();
+
+        given(userRepository.findById(id)).willReturn(Optional.of(mockUser));
+
+        User user = userService.deactiveUser(1004L);
+
+        verify(userRepository).findById(1004L);
+
+        assertThat(user.isAdmin(), is(false));
+        assertThat(user.isActive(), is(false));
     }
 }
